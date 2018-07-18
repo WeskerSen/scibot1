@@ -52,4 +52,4 @@ async def multiply(left : int, right : int):
     """Adds two numbers together."""
     await bot.say(left * right)
    
-bot.run(os.getenv('Token'))
+bot.run(os.environ['Token'])

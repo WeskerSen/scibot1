@@ -39,17 +39,17 @@ async def add(left : int, right : int):
 
 @bot.command()
 async def substract(left : int, right : int):
-    """Adds two numbers together."""
+    """Subtracts two numbers together."""
     await bot.say(left - right)
 
 @bot.command()
 async def divide(left : int, right : int):
-    """Adds two numbers together."""
+    """Divides two numbers together."""
     await bot.say(left / right)
 
 @bot.command()
 async def multiply(left : int, right : int):
-    """Adds two numbers together."""
+    """Multiplies two numbers together."""
     await bot.say(left * right)
    
 bot.run(os.environ['Token'])

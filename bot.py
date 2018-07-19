@@ -52,4 +52,19 @@ async def multiply(left : int, right : int):
     """Multiplies two numbers together."""
     await bot.say(left * right)
    
+@bot.command(pass_context=True)
+async def role(ctx):
+	author=ctx.message.author
+	server=ctx.message.server
+	role=discord.utils.get(server.roles,id=role_id)
+	if role in author.roles:
+		await bot.remove_roles(author,role)
+	else:
+		message=''
+		await bot.add_roles(author,role)
+		for member in server.members:
+			if role in member.roles:
+				message+='{}\n'.format(member.mention)
+		await bot.send_message(author,message)
+
 bot.run(os.environ['Token'])

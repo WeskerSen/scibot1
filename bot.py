@@ -1,55 +1,31 @@
 import discord
-from discord.ext import commands
-from discord.ext.commands import Bot
-import asyncio
-import random
 import os
+import asyncio
+import time
 
-bot = commands.Bot(command_prefix='&')
+client = discord.Client()
 
-@bot.event
+@client.event
 async def on_ready():
-    print ("Ready! Steady! and Go!")
-    print ("Started " + bot.user.name)
-    print ("ID: " + bot.user.id)
+    print('Logged in as')
+    print(client.user.name)
 
-@bot.command(pass_context=True)
-async def info(ctx, user: discord.Member):
-    embed = discord.Embed(title="{}'s info".format(user.name), description="Here's what I could find.", color=0x00ff00)
-    embed.add_field(name="Name", value=user.name, inline=True)
-    embed.add_field(name="ID", value=user.id, inline=True)
-    embed.add_field(name="Status", value=user.status, inline=True)
-    embed.add_field(name="Highest role", value=user.top_role)
-    embed.add_field(name="Joined", value=user.joined_at)
-    embed.set_thumbnail(url=user.avatar_url)
-    await bot.say(embed=embed)
+guildids = ["489333893988745217", "520623784370110475"]
+channelids = ["491621917204414466", "520831140324573184", "519849314168602643"]
 
-@bot.command(pass_context=True)
-async def ownerinfo(ctx):
-    embed = discord.Embed(title="Information about owner", description="Bot Name- SciBot", color=0x00ff00)
-    embed.set_footer(text="Copyright@UK Soft")
-    embed.set_author(name=" Bot Owner Name- DarkLegend")
-    embed.add_field(name="Site- https://sciencetechnews.000webhostapp.com", value="Thanks for adding our bot", inline=True)
-    await bot.say(embed=embed)
+@client.event
+async def on_message(message):
+    if message.channel.id not in channelids and message.server.id in guildids:
+        def check(message):
+            return message
+        spam = await client.wait_for_message(author=message.author, channel= message.channel,check=check, timeout=5)
+        spam1 = await client.wait_for_message(author=message.author, check=check, timeout=5, channel= message.channel)
+        spam2 = await client.wait_for_message(author=message.author, check=check, timeout=5, channel= message.channel)
+        await client.delete_message(spam)
+        await client.delete_message(spam1)
+        await client.delete_message(spam2)
+    else:
+      return
 
-@bot.command()
-async def add(left : int, right : int):
-    """Adds two numbers together."""
-    await bot.say(left + right)
-
-@bot.command()
-async def substract(left : int, right : int):
-    """Subtracts two numbers together."""
-    await bot.say(left - right)
-
-@bot.command()
-async def divide(left : int, right : int):
-    """Divides two numbers together."""
-    await bot.say(left / right)
-
-@bot.command()
-async def multiply(left : int, right : int):
-    """Multiplies two numbers together."""
-    await bot.say(left * right)
-   
-bot.run(os.environ['Token'])
+keep_alive()
+client.run(os.environ['Token'])

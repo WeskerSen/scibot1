@@ -27,5 +27,4 @@ async def on_message(message):
     else:
       return
 
-keep_alive()
 client.run(os.environ['Token'])

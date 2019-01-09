@@ -19,7 +19,7 @@ async def on_message(message):
         return
     if message.channel.id not in channelids and message.server.id in guildids:
         def check(message):
-            return message
+            return message.content
         spam = await client.wait_for_message(author=message.author, channel= message.channel,check=check, timeout=2)
         spam1 = await client.wait_for_message(author=message.author, check=check, timeout=2, channel= message.channel)
         spam2 = await client.wait_for_message(author=message.author, check=check, timeout=2, channel= message.channel)

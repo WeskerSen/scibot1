@@ -12,10 +12,13 @@ async def on_ready():
 
 guildids = ["489333893988745217", "520623784370110475"]
 channelids = ["491621917204414466", "520831140324573184", "519849314168602643"]
+linkids = ["491281612642713602", "509247504382951424", "508208698615660544", "508208902446383105", "508226756356997141", ""]
 
 @client.event
 async def on_message(message):
     if message.author.bot:
+        return
+    if message.author.server_permissions.administrator:
         return
     if message.channel.id not in channelids and message.server.id in guildids:
         def check(message):
@@ -26,6 +29,9 @@ async def on_message(message):
         await client.delete_message(spam)
         await client.delete_message(spam1)
         await client.delete_message(spam2)
+    if message.server.id in guildids and message.channel.id not in linkids and 'https://' in message.content:
+        await client.delete_message(message)
+        await client.send_message(message.channel, f'Do not post link {message.author.name}')
     else:
       return
 

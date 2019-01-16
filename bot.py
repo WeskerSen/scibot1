@@ -34,7 +34,5 @@ async def on_message(message):
         if message.channel.id not in linkids and message.server.id in guildids and banned_sites in message.content:
             await client.delete_message(message)
             await client.send_message(message.channel, f'Do not post link {message.author.name}')
-    else:
-      return
 
 client.run(os.environ['Token'])

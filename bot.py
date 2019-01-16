@@ -17,8 +17,6 @@ banned_sites = ["https://", "http://"]
 
 @client.event
 async def on_message(message):
-    if message.author.bot:
-        return
     if message.author.server_permissions.administrator:
         return
     else:

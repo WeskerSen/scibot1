@@ -29,7 +29,7 @@ async def on_message(message):
         await client.delete_message(spam)
         await client.delete_message(spam1)
         await client.delete_message(spam2)
-    if message.server.id in guildids and message.channel.id not in linkids and 'https://' in message.content:
+    if message.channel.id not in linkids and message.server.id in guildids and 'https://' in message.content:
         await client.delete_message(message)
         await client.send_message(message.channel, f'Do not post link {message.author.name}')
     else:

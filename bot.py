@@ -27,6 +27,6 @@ async def on_message(message):
             await client.delete_message(spam)
             await client.delete_message(spam1)
             await client.delete_message(spam2)
-            asyncio.sleep(2)
+            return
 
 client.run(os.environ['Token'])

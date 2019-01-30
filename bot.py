@@ -20,6 +20,8 @@ async def on_message(message):
     if message.author.bot:
         return
     else:
+        if message.author.bot:
+            return
         if message.channel.id not in channelids and message.server.id in guildids:
             def check(message):
                 return message.content

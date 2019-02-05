@@ -15,8 +15,6 @@ channelids = ["491621917204414466", "520831140324573184", "519849314168602643", 
 
 @client.event
 async def on_message(message):
-    if message.author.server_permissions.administrator:
-        return
     if message.author.bot:
         return
     else:

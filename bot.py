@@ -17,10 +17,12 @@ channelids = ["491621917204414466", "520831140324573184", "519849314168602643", 
 async def on_message(message):
     if message.author.bot:
         return
-    if message.author.server_permissions.kick_members:
+    if message.author.server_permissions.administrator:
         return
     else:
         if message.author.bot:
+            return
+        if message.author.server_permissions.administrator:
             return
         if message.channel.id not in channelids and message.server.id in guildids:
             def check(message):

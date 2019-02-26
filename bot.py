@@ -28,7 +28,7 @@ async def on_message(message):
             def check(message):
                 return message.content
             spam = await client.wait_for_message(author=message.author, channel= message.channel,check=check, timeout=2)
-            spam1 = await client.wait_for_message(author=message.author, check=check, timeout=2, channel= message.channel)
+            spam1 = await client.wait_for_message(author=message.author, check=check, timeout=1, channel= message.channel)
             spam2 = await client.wait_for_message(author=message.author, check=check, timeout=1, channel= message.channel)
             await client.delete_message(spam)
             await client.delete_message(spam1)
